@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@api/*": ["src/apps/api/*"],
+      "@config/*": ["src/config/*"],
+      "@validators/*": ["src/validators/*"],
+      "@modules/*": ["src/modules/*"],
+      "@common/*": ["src/modules/_common/*"],
+      "@mocks/*": ["test/mocks/*"],
+      "@testUtils/*": ["test/utils/*"]
+    },
+    "incremental": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types",
+      "./types/**/*"
+    ],
+    "types": ["node", "mocha"]
+  },
+  "include": [
+    "src/**/*",
+    "test/**/*",
+  ],
+  "exclude": ["node_modules", "dist"]
+}

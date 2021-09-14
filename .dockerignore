@@ -1,0 +1,12 @@
+dist/
+*.env
+node_modules/
+.idea/
+.vscode/
+.git/
+.gitlab-ci.yml
+Dockerfile*
+docker-compose.yml
+*.log
+.scannerwork
+.husky/

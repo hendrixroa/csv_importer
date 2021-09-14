@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  api:
+    image: csv_importer:latest
+    networks:
+      - importer
+    ports:
+      - 3000:3000
+    env_file:
+      - ./env/.env
+      - ./env/${APP}.env
+    environment:
+      - APP=${APP}
+
+
+networks:
+  importer:

@@ -1,0 +1,25 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "monorepo": true,
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "tsconfig.json",
+    "plugins": [
+      {
+        "name": "@nestjs/swagger",
+        "options": {
+          "classValidatorShim": true,
+          "introspectComments": false
+        }
+      }
+    ]
+  },
+  "projects": {
+    "api": {
+      "type": "application",
+      "entryFile": "main",
+      "sourceRoot": "src/apps/api"
+    }
+  }
+}

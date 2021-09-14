@@ -1,0 +1,79 @@
+{
+  "name": "csv_importer",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Hendrix Roa <hendrix.alex87@gmail.com>",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nest build --tsc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npx prettier --write --loglevel silent",
+      "npx eslint \"{src,apps,libs,test}/**/*.ts\" --fix --fix-type suggestion,layout,problem",
+      "yarn run build",
+      "make run_tests"
+    ]
+  },
+  "dependencies": {
+    "@nestjs/common": "^8.0.6",
+    "@nestjs/core": "^8.0.6",
+    "@nestjs/platform-express": "^8.0.6",
+    "@nestjs/swagger": "^5.0.9",
+    "@nestjs/typeorm": "^8.0.2",
+    "bunyan": "^1.8.15",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "csurf": "^1.11.0",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.0.1",
+    "sqlite3": "^5.0.2",
+    "swagger-ui-express": "^4.1.6",
+    "typeorm": "^0.2.37",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^8.1.1",
+    "@nestjs/schematics": "^8.0.3",
+    "@nestjs/testing": "^8.0.6",
+    "@testdeck/mocha": "^0.1.2",
+    "@types/bunyan": "^1.8.6",
+    "@types/chai": "^4.2.18",
+    "@types/compression": "^1.7.0",
+    "@types/express": "^4.17.11",
+    "@types/lodash": "^4.14.169",
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^15.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "chai": "^4.3.0",
+    "env-cmd": "^10.1.0",
+    "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-security": "^1.4.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "mocha": "^8.3.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.1.2",
+    "ts-loader": "^8.0.17",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.1.5"
+  }
+}
