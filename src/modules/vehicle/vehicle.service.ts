@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { difference } from 'lodash';
+import { Connection, getConnection } from 'typeorm';
 
 import { BaseService } from '@common/base.service';
 
@@ -12,28 +11,21 @@ import {
 import { PaginationPayload } from '@common/helpers.dto';
 
 import { VehicleListDTO } from '@modules/vehicle/vehicle.dto';
-import { VehicleRepository } from '@modules/vehicle/vehicle.repository';
 import { Vehicle } from '@modules/vehicle/vehicle.entity';
 
 @Injectable()
 export class VehicleService extends BaseService {
-  private readonly NAME_FOR_RESULT = 'Vehicle';
-  constructor(
-    @InjectRepository(VehicleRepository)
-    private readonly VehicleRepository: VehicleRepository,
-  ) {
+  private readonly connection: Connection;
+
+  constructor() {
     super();
+    this.connection = getConnection();
   }
 
   public async list(
     payload: PaginationPayload,
   ): Promise<ListResult<VehicleListDTO[]>> {
-    const { items = [], count } = await this.VehicleRepository.select({
-      count: true,
-      limit: payload.limit,
-      page: payload.page,
-      search: payload.search,
-    });
-    return this.listItems(items, payload, count);
+    const vehicles = await this.connection.manager.find(Vehicle);
+    return this.listItems(vehicles, payload, vehicles.length);
   }
 }

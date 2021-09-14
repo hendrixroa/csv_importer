@@ -10,5 +10,5 @@ export const ToBigInt: ValueTransformer = {
 export abstract class BaseEntity {
   @Generated('increment')
   @PrimaryColumn('integer', { transformer: [ToBigInt] })
-  id: number;
+  id?: number;
 }

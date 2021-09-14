@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { APPConfig } from '@config/app.config';
 import { CommonModule } from '@common/common.module';
-import { VehicleRepository } from '@modules/vehicle/vehicle.repository';
+import { Vehicle } from '@modules/vehicle/vehicle.entity';
 import { VehicleService } from '@modules/vehicle/vehicle.service';
 import { VehicleController } from '@modules/vehicle/vehicle.controller';
 
@@ -11,7 +11,7 @@ import { VehicleController } from '@modules/vehicle/vehicle.controller';
   imports: [
     CommonModule,
     TypeOrmModule.forRoot(APPConfig.getTypeOrmConfig()),
-    TypeOrmModule.forFeature([VehicleRepository]),
+    TypeOrmModule.forFeature([Vehicle]),
   ],
   controllers: [VehicleController],
   providers: [VehicleService],

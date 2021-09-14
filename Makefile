@@ -1,4 +1,4 @@
-.PHONY: lint build clean build_docker dev run docs
+.PHONY: lint build clean build_docker
 
 ################################################################################
 # DEVELOP
@@ -35,11 +35,8 @@ build: clean
         cd dist && \
         NODE_ENV=${NODE_ENV:-production} yarn
 
-build_docker:
-	docker build -t platform:latest --build-arg APP="$(APP)" --build-arg ACCOUNT_ID="$(ACCOUNT_ID)" --build-arg REGION="$(AWS_REGION)" . -q
-
 build_docker_app:
-	docker build -t platform:latest -f Dockerfile.local .
+	docker build -t csv_importer:latest -f Dockerfile .
 	APP=$(APP) docker-compose up --force-recreate
 
 
@@ -55,7 +52,7 @@ lint_formatting:
 
 install_dependencies:
 	yarn
-	git config --unset core.hooksPath
+	git config --unset core.hooksPath || true
 
 clean:
 	rm -rf dist

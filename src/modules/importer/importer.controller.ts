@@ -48,11 +48,7 @@ export class ImporterController {
     description: 'File payload',
     type: ImporterUploadDto,
   })
-  @ApiResponse({ type: String, status: 201 })
-  async processFiles(
-    @UploadedFiles() files: ImporterPayload[],
-  ): Promise<string> {
+  async processFiles(@UploadedFiles() files: ImporterPayload[]): Promise<void> {
     await this.importerService.processFiles(files);
-    return 'success';
   }
 }

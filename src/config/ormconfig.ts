@@ -4,8 +4,6 @@ const isTest = process.env.NODE_ENV === 'test';
 const dotFile = isTest ? './env/.test.env' : './env/.env';
 dotenv.config({ path: dotFile });
 
-const isSSL = process.env.DATABASE_SSL === 'true';
-
 module.exports = [
   {
     type: 'sqlite',
