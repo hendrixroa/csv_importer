@@ -1,6 +1,7 @@
 import { LogService } from '@common/log.service';
 import { ValidatorService } from '@common/validator.service';
 import { ErrorService } from '@common/error.service';
+import { ConfigService } from '@common/config.service';
 import { PaginationPayload } from '@common/helpers.dto';
 import { StringUtil } from '@common/string.util';
 
@@ -21,11 +22,13 @@ export class BaseService {
   protected logService: LogService;
   protected validatorService: ValidatorService;
   protected errorService: ErrorService;
+  protected configService: ConfigService;
 
   constructor() {
     this.logService = new LogService();
     this.errorService = new ErrorService();
     this.validatorService = new ValidatorService();
+    this.configService = new ConfigService();
   }
 
   private mapItemsToList(items: any) {

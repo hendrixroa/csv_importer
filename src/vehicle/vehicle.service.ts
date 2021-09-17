@@ -10,8 +10,8 @@ import {
 } from '@common/helpers.dto';
 import { PaginationPayload } from '@common/helpers.dto';
 
-import { VehicleListDTO } from '@modules/vehicle/vehicle.dto';
-import { Vehicle } from '@modules/vehicle/vehicle.entity';
+import { VehicleListDTO } from '@/vehicle/vehicle.dto';
+import { Vehicle } from '@/vehicle/vehicle.entity';
 
 @Injectable()
 export class VehicleService extends BaseService {

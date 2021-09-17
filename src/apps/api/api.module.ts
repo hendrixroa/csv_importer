@@ -9,8 +9,8 @@ import {
 import { LoggerMiddleware } from '@api/middlewares/logger.middleware';
 
 // Modules
-import { VehicleModule } from '@modules/vehicle/vehicle.module';
-import { ImporterModule } from '@/modules/importer/importer.module';
+import { VehicleModule } from '@/vehicle/vehicle.module';
+import { ImporterModule } from '@/importer/importer.module';
 import { CommonModule } from '@common/common.module';
 
 @Module({

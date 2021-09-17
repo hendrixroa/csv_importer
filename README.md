@@ -60,6 +60,7 @@ All configs should reside on *src/config/* folder, the file *src/config/app.conf
 
 The persistence layer is completely delegated by the framework [Typeorm](https://github.com/typeorm/typeorm) using SQLite as database provider which is used in mode *In-Memory* to avoid any installation of on premise database which is out of scope for this project.
 Neither database configuration is required, however you can set some variables via *.env files to change a few things in the database provider, for example you can set the variable DATABASE_LOG_LEVEL=true to see all the trace of database when execute all queries. If you want to extend that config check the file *src/config/ormconfig.ts* and extend it according to your needs.
+Because this project uses an In-memory database like SQLite we have not migrations or any configuration for repository approach due the incompatibility between nest.js and non-connection persistent of SQLite make no possible to inject custom repositories classes in each module effectively, said that the fix was implemented is to use the connection manager to create a Repository given an entity.  
  
 ## Development
 
@@ -125,6 +126,7 @@ This project is using the file sending integration that [Nest Upload](https://do
 - Fast CSV provides a header configuration that make easy the skipping columns non-desired in the csv files this project is processing. 
 - Fast CSV provides a trim functionality to make sure we are loading clean strings.
 - Fast CSV provides the skipping feature for empty rows.
+- Fast CSV allows change the csv delimiter, in this project in your .env change it using the environment variable **CSV_DELIMITER=YourCharDelimiter**.
 - Fast CSV provides the ability to skip rows given an index, for example we are not interested in load the header as row.
 - Fast CSV provides the ability to map/transform each row is processing via a callback to perform it, a mapper vehicle was implemented to make sure is creating persistence entities to save it easily.
 

@@ -3,10 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { CommonModule } from '@common/common.module';
 
-import { ImporterService } from '@modules/importer/importer.service';
-import { ImporterController } from '@modules/importer/importer.controller';
+import { ImporterService } from '@/importer/importer.service';
+import { ImporterController } from '@/importer/importer.controller';
 import { APPConfig } from '@/config/app.config';
-import { Vehicle } from '@modules/vehicle/vehicle.entity';
+import { Vehicle } from '@/vehicle/vehicle.entity';
 
 @Module({
   imports: [

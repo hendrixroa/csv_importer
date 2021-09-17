@@ -3,10 +3,10 @@ import { expect } from 'chai';
 import * as sinon from 'sinon';
 import * as faker from 'faker';
 
-import { VehicleController } from '@modules/vehicle/vehicle.controller';
-import { VehicleService } from '@modules/vehicle/vehicle.service';
-import { VehicleListDTO } from '@/modules/vehicle/vehicle.dto';
-import { ListResult, PaginationPayload } from "@common/helpers.dto";
+import { VehicleController } from '@/vehicle/vehicle.controller';
+import { VehicleService } from '@/vehicle/vehicle.service';
+import { VehicleListDTO } from '@/vehicle/vehicle.dto';
+import { ListResult, PaginationPayload } from '@common/helpers.dto';
 import { ModuleTestUtil } from 'test/util/module.test.util';
 
 @suite()
@@ -43,8 +43,9 @@ export class VehicleControllerTest {
         pages: 1,
       },
     } as ListResult<VehicleListDTO>;
-    // @ts-ignore
-    const stub = sinon.stub(this.vehicleService, 'list').resolves(result);
+    const stub = sinon
+      .stub(this.vehicleService, 'list')
+      .resolves(result as unknown as ListResult<VehicleListDTO[]>);
 
     const resultController = await this.vehicleController.listVehicles({});
 

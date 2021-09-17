@@ -24,12 +24,9 @@ import {
 import { Readable } from 'stream';
 import { Response } from 'express';
 
-import {
-  ImporterPayload,
-  ImporterUploadDto,
-} from '@modules/importer/importer.dto';
+import { ImporterPayload, ImporterUploadDto } from '@/importer/importer.dto';
 
-import { ImporterService } from '@modules/importer/importer.service';
+import { ImporterService } from '@/importer/importer.service';
 import { ErrorResponseType } from '@common/error.service';
 
 @Controller('imports')
@@ -49,6 +46,6 @@ export class ImporterController {
     type: ImporterUploadDto,
   })
   async processFiles(@UploadedFiles() files: ImporterPayload[]): Promise<void> {
-    await this.importerService.processFiles(files);
+    await this.importerService.processFiles2(files);
   }
 }

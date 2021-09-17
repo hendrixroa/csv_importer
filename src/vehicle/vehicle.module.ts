@@ -3,9 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { APPConfig } from '@config/app.config';
 import { CommonModule } from '@common/common.module';
-import { Vehicle } from '@modules/vehicle/vehicle.entity';
-import { VehicleService } from '@modules/vehicle/vehicle.service';
-import { VehicleController } from '@modules/vehicle/vehicle.controller';
+import { Vehicle } from '@/vehicle/vehicle.entity';
+import { VehicleService } from '@/vehicle/vehicle.service';
+import { VehicleController } from '@/vehicle/vehicle.controller';
 
 @Module({
   imports: [

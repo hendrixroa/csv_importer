@@ -26,8 +26,8 @@ import {
 } from '@common/helpers.dto';
 import { ErrorResponseType } from '@common/error.service';
 
-import { VehicleService } from '@modules/vehicle/vehicle.service';
-import { VehicleListDTO } from '@modules/vehicle/vehicle.dto';
+import { VehicleService } from '@/vehicle/vehicle.service';
+import { VehicleListDTO } from '@/vehicle/vehicle.dto';
 import { PaginationPayload } from '@common/helpers.dto';
 
 @Controller(`${VehicleController.SUMMARY_NAME.toLowerCase()}s`)

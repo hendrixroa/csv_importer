@@ -14,9 +14,7 @@
       "@/*": ["src/*"],
       "@api/*": ["src/apps/api/*"],
       "@config/*": ["src/config/*"],
-      "@validators/*": ["src/validators/*"],
-      "@modules/*": ["src/modules/*"],
-      "@common/*": ["src/modules/_common/*"],
+      "@common/*": ["src/_common/*"],
       "@mocks/*": ["test/mocks/*"],
       "@testUtils/*": ["test/utils/*"]
     },

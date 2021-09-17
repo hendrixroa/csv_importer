@@ -20,6 +20,10 @@ export class APPConfig {
   @IsArray()
   APP_LOG_LEVEL = ['info'];
 
+  @IsOptional()
+  @IsString()
+  CSV_DELIMITER = ',';
+
   public static getTypeOrmConfig(): TypeOrmModuleOptions {
     return ormconfig[0];
   }

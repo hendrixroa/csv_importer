@@ -9,7 +9,7 @@ module.exports = [
     type: 'sqlite',
     database: ':memory:',
     dropSchema: true,
-    entities: ['src/modules/**/*.entity{.js,.ts}'],
+    entities: ['src/**/*.entity{.js,.ts}'],
     synchronize: true,
     logging: process.env.DATABASE_LOG_LEVEL === 'true',
   },
