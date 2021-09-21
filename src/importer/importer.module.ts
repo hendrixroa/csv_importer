@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { APPConfig } from '@/config/app.config';
 import { CommonModule } from '@common/common.module';
-
 import { ImporterService } from '@/importer/importer.service';
 import { ImporterController } from '@/importer/importer.controller';
-import { APPConfig } from '@/config/app.config';
 import { Vehicle } from '@/vehicle/vehicle.entity';
 
 @Module({

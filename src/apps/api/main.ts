@@ -9,6 +9,7 @@ import { APIConfig } from '@api/api.config';
 import { ConfigService } from '@common/config.service';
 import { ValidatorService } from '@common/validator.service';
 import { BadRequestError } from '@common/error.service';
+import { ImporterProviderSeed } from '@/importer/importer.provider.seed';
 
 async function bootstrap() {
   const logService = new LogService();
@@ -50,6 +51,8 @@ async function bootstrap() {
     };
     const document = await apiUtil.generateSwagger(app);
     SwaggerModule.setup('docs', app, document, customOptions);
+
+    await new ImporterProviderSeed().create();
 
     await app.listen(apiConfig.PORT);
     const messageConsole = `is running on: ${await app.getUrl()}`;

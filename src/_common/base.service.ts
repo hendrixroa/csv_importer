@@ -3,7 +3,6 @@ import { ValidatorService } from '@common/validator.service';
 import { ErrorService } from '@common/error.service';
 import { ConfigService } from '@common/config.service';
 import { PaginationPayload } from '@common/helpers.dto';
-import { StringUtil } from '@common/string.util';
 
 export class ModelMetaResponse {
   count: number;

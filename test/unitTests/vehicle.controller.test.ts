@@ -6,7 +6,7 @@ import * as faker from 'faker';
 import { VehicleController } from '@/vehicle/vehicle.controller';
 import { VehicleService } from '@/vehicle/vehicle.service';
 import { VehicleListDTO } from '@/vehicle/vehicle.dto';
-import { ListResult, PaginationPayload } from '@common/helpers.dto';
+import { ListResult } from '@common/helpers.dto';
 import { ModuleTestUtil } from 'test/util/module.test.util';
 
 @suite()

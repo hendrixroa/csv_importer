@@ -1,12 +1,6 @@
-import {
-  Brackets,
-  Repository,
-  SelectQueryBuilder,
-  UpdateResult,
-} from 'typeorm';
+import { Repository, SelectQueryBuilder } from 'typeorm';
 
 import { BaseEntity } from '@common/base.entity';
-import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
 export class BaseSelectOptions {
   public limit?: number;

@@ -3,12 +3,7 @@ import { Connection, getConnection } from 'typeorm';
 
 import { BaseService } from '@common/base.service';
 
-import {
-  ListResult,
-  SingleItemIDParam,
-  SingleResult,
-} from '@common/helpers.dto';
-import { PaginationPayload } from '@common/helpers.dto';
+import { ListResult, PaginationPayload } from '@common/helpers.dto';
 
 import { VehicleListDTO } from '@/vehicle/vehicle.dto';
 import { Vehicle } from '@/vehicle/vehicle.entity';

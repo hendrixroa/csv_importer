@@ -1,78 +1,66 @@
 import { Injectable } from '@nestjs/common';
-import { getConnection } from 'typeorm';
+import { Connection, getConnection } from 'typeorm';
 import * as csv from 'csvtojson';
 import * as joi from 'joi';
 
 import { APPConfig } from '@config/app.config';
-import { ImporterPayload } from '@/importer/importer.dto';
+import {
+  ImporterPayload,
+  ImporterProviderPayload,
+} from '@/importer/importer.dto';
 
 import { BaseService } from '@common/base.service';
 import { Vehicle } from '@/vehicle/vehicle.entity';
 import { VehicleSchemaValidator } from '@/vehicle/vehicle.schema.validator';
-import { BadRequestError } from '@/_common/error.service';
-
-export const headers = [
-  'UUID',
-  'VIN',
-  'Make',
-  'Model',
-  'Mileage',
-  'Year',
-  'Price',
-  'Zip Code',
-  'Create Date',
-  'Update Date',
-];
+import { ImporterProvider } from '@/importer/importer.provider.entity';
 
 @Injectable()
 export class ImporterService extends BaseService {
   private readonly appConfig: APPConfig;
+  private readonly connection: Connection;
 
   constructor() {
     super();
     this.appConfig = this.configService.loadConfig(APPConfig);
+    this.connection = getConnection();
   }
 
-  /*public async processFiles(files: ImporterPayload[]): Promise<void> {
+  public async processFiles(
+    files: ImporterPayload[],
+    provider: ImporterProviderPayload,
+  ): Promise<void> {
+    const providerData = await this.getHeadersGivenProvider(provider);
     const filesCsv = files.filter((file) => file.mimetype === 'text/csv');
-    for (const file of filesCsv) {
-      try {
-        const streamFile = Readable.from(file.buffer.toString());
-        streamFile
-          .pipe(
-            parse({
-              headers,
-              trim: true,
-              discardUnmappedColumns: true,
-              ignoreEmpty: true,
-              skipLines: 1,
-              delimiter: this.appConfig.CSV_DELIMITER,
-            }),
-          )
-          .transform((data: any): void => {
-            streamFile.emit('error', new Error('errorcito0: ') );
-          })
-          .on('data', this.saveVehicles)
-          .on('end', (rowCount: number) => console.log(`Parsed ${rowCount} rows`))
-          .on('error', (error) => new Error('errorcito1: '));
-      } catch (err) {
-        console.log('errorcito2');
-      }
-    }
-  }*/
-
-  public async processFiles2(files: ImporterPayload[]): Promise<void> {
-    const filesCsv = files.filter((file) => file.mimetype === 'text/csv');
+    const vehicles: Vehicle[] = [];
+    const headers: any = providerData.fields;
     for (const file of filesCsv) {
       const dataStrFile = file.buffer.toString();
-      const dataFile = await csv().fromString(dataStrFile);
-      const vehicles: Vehicle[] = [];
+      const dataFile = await csv({
+        headers: headers.split(','),
+        ignoreEmpty: true,
+        delimiter: this.appConfig.CSV_DELIMITER.trim(),
+      }).fromString(dataStrFile);
       for (const vehicleItem of dataFile) {
         this.validateVehicleData(vehicleItem);
-        const vehicle = this.converToVehicleItem(vehicleItem);
+        const vehicle = this.convertToVehicleItem(vehicleItem);
         vehicles.push(vehicle);
       }
     }
+    await this.saveVehicles(vehicles);
+  }
+
+  private async getHeadersGivenProvider(
+    provider: ImporterProviderPayload,
+  ): Promise<ImporterProvider> {
+    const providerData = await this.connection.manager.find(ImporterProvider, {
+      name: provider.name,
+    });
+    if (providerData.length === 0) {
+      this.errorService.notFoundError(
+        `The provider ${provider.name} does not exists`,
+      );
+    }
+    return providerData[0];
   }
 
   private validateVehicleData(data: any) {
@@ -98,7 +86,7 @@ export class ImporterService extends BaseService {
     }, '');
   }
 
-  private converToVehicleItem(data: any): Vehicle {
+  private convertToVehicleItem(data: any): Vehicle {
     const vehicle = new Vehicle();
     vehicle.uuid = `${data.UUID}`;
     vehicle.vin = `${data.VIN}`;

@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString } from 'class-validator';
-import { PaginationPayload, QueryParamDescription } from '@common/helpers.dto';
+import { QueryParamDescription } from '@common/helpers.dto';
 
 export class VehicleListDTO {
   @ApiProperty({

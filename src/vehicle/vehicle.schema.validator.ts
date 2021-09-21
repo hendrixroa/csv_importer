@@ -1,5 +1,4 @@
 import * as joi from 'joi';
-import { Vehicle } from '@/vehicle/vehicle.entity';
 
 export class VehicleSchemaValidator {
   private static vehicleSchema = joi.object({
@@ -16,8 +15,8 @@ export class VehicleSchemaValidator {
     Year: joi.number().min(1886).max(2021).required(),
     Price: joi.number().min(500).max(50000000).required(),
     'Zip Code': joi.string().required(),
-    'Create Date': joi.date().timestamp().required(),
-    'Update Date': joi.date().timestamp().required(),
+    'Create Date': joi.date().iso().required(),
+    'Update Date': joi.date().iso().required(),
   });
 
   public static validate(vehicleData: any) {

@@ -1,34 +1,20 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-  Query,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
-  ApiBearerAuth,
   ApiOperation,
   ApiResponse,
-  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
 
 import {
   ListResult,
-  SingleItemIDParam,
-  SingleResult,
+  PaginationPayload,
   SuccessResponse,
 } from '@common/helpers.dto';
 import { ErrorResponseType } from '@common/error.service';
 
 import { VehicleService } from '@/vehicle/vehicle.service';
 import { VehicleListDTO } from '@/vehicle/vehicle.dto';
-import { PaginationPayload } from '@common/helpers.dto';
 
 @Controller(`${VehicleController.SUMMARY_NAME.toLowerCase()}s`)
 @ApiTags(VehicleController.SUMMARY_NAME)

@@ -1,4 +1,4 @@
-import { Column, Generated, PrimaryColumn, ValueTransformer } from 'typeorm';
+import { Generated, PrimaryColumn, ValueTransformer } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
 export const ToBigInt: ValueTransformer = {
