@@ -36,12 +36,6 @@ coverage/
 # swagger
 .swagger/
 
-# dotenv environment variables file
-.env
-
-# All .env files
-*.env
-
 # keep test env files
 !*.test.env
 
