@@ -6,7 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build --tsc"
+    "build": "nest build --tsc",
+    "start": "APP=api make dev_app"
   },
   "husky": {
     "hooks": {
